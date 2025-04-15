@@ -41,9 +41,7 @@ Then("I check if each transaction contains the {string} category", (searchWord) 
   cy.get('[data-cy="transactions-search-summary"]').should('exist').and('be.visible')
   cy.get('[data-cy="transactions-history-sticky-search-group"]').should('exist').and('be.visible')
 
-  cy.get('[data-chunk="end"] > a').click().wait(500)
-  cy.scrollTo('bottom').wait(500)
-  cy.get('tr*[data-cy^="transaction-list-item"]').eq(-1).scrollIntoView().wait(500)
+  cy.showAllTransactions()
 
   cy.get('tr*[data-cy^="transaction-list-item"]').each((transaction) => {
       cy.wrap(transaction).find('.g-badge-category').should('contain.text', searchWord);
@@ -54,10 +52,8 @@ Then("I check if each transaction contains the {string} category", (searchWord) 
   cy.get('[data-cy="transactions-search-summary"]').should('exist').and('be.visible')
   cy.get('[data-cy="transactions-history-sticky-search-group"]').should('exist').and('be.visible')
 
-  cy.get('[data-chunk="end"] > a').click().wait(500)
-  cy.scrollTo('bottom').wait(500)
-  cy.get('tr*[data-cy^="transaction-list-item"]').eq(-1).scrollIntoView().wait(500)
-
+  cy.showAllTransactions()
+  
   cy.get('[data-cy="transactions-search-summary"]').find('data').invoke('attr', 'value').then((totalValueText) => {
     const totalValue = parseFloat(`${totalValueText}`);
     let sum = 0;
@@ -76,10 +72,7 @@ Then("I check if each transaction contains the {string} category", (searchWord) 
  });
 
  Then("Number of transactions matches the summary", () => {
-  cy.get('[data-chunk="end"] > a').click().wait(500)
-  cy.scrollTo('bottom').wait(500)
-  cy.get('tr*[data-cy^="transaction-list-item"]').eq(-1).scrollIntoView().wait(500)
-  
+  cy.showAllTransactions()
   cy.contains('In total').parent().invoke('text').then((text) => {
     const totalNum = parseFloat(text.replace(/\D/g,''));
 

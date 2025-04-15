@@ -9,10 +9,12 @@ export default defineConfig({
   defaultCommandTimeout: 20000,
   chromeWebSecurity: false,
   experimentalModifyObstructiveThirdPartyCode: true,
+  
   env:{
     georgeHome: 'https://george.fat3.sparkasse.at/',
   },
   e2e: {
+    supportFile: 'cypress/support/commands.ts',
     specPattern: "**/*.feature",
     async setupNodeEvents(
       on: Cypress.PluginEvents,

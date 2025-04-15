@@ -7,7 +7,7 @@ Feature: Search functionality
     And I click the login button
     Then I should be logged in
 
-  Scenario: Check the correct category in each transaction
+  Scenario: Check that each transaction contains searched category
     Given Search bar is available
     When I type keyword "Fashion" into search bar
     And I click search button
